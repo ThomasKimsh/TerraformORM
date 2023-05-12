@@ -1,0 +1,79 @@
+  title: "Create a Compartment and VCN with Resource Manager"
+  stackDescription: "Create a Compartment and VCN with Resource Manager"
+  schemaVersion: 1.1.0
+  version: "20230411"
+  locale: "en"
+
+  variableGroups:
+  - title: "Resource Manager Basic Variables"
+    visible: false
+    variables:
+    - region
+    
+  - title: "Compartment & VCN Require Variables"
+    visible: true  
+    variables:
+    - parent_compartment_ocid
+    - compartment_name
+    - compartment_description
+    - vcn_name
+    - vcn_cidr
+    - public_subnet_name
+    - public_subnet_cidr
+
+  - title: "Compartment & VCN Optional Variables"
+    visible: true  
+    variables:
+    - compartment_enable_delete
+
+  variables:
+    parent_compartment_ocid:
+      type: oci:identity:compartment:id
+      required: true
+      title: "Parent Compartment"
+      description: "Select Parent Compartment for New Compartment"
+
+    compartment_name:
+      type: string
+      required: true
+      default: "defaultCompartment"
+      title: "Compartment Name"
+      description: "New Compartment Name"
+
+    compartment_description:
+      type: string
+      required: true
+      default: "Default Compartment"
+      title: "Compartment Description"
+
+    vcn_name:
+      type: string
+      required: true
+      default: "myVCN"
+      title: "VCN Name"
+
+    vcn_cidr:
+      type: string
+      required: true
+      default: "10.0.0.0/16"
+      title: "VCN CIDR Block"
+      description: "Default : 10.0.0.0/16"
+
+    public_subnet_name:
+      type: string
+      required: true
+      default: "public-subnet"
+      title: "Public Subnet Name"
+
+    public_subnet_cidr:
+      type: string
+      required: true
+      default: "10.0.0.0/24"
+      title: "Public Subnet CIDR Block"
+      description: "Default : 10.0.0.0/24"
+
+    compartment_enable_delete:
+      type: boolean
+      required: false
+      default: false
+      title: "Compartment Delete Enable"
