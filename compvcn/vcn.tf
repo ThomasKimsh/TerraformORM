@@ -34,6 +34,24 @@ resource "oci_core_default_route_table" "default-route-table" {
 resource "oci_core_default_security_list" "default-security-list" {
   manage_default_resource_id = oci_core_vcn.vcn.default_security_list_id
 
+    egress_security_rules {
+    destination = "0.0.0.0/0"
+    protocol = "6"
+    tcp_options {
+      min = 80
+      max = 80
+    }
+  }
+
+  egress_security_rules {
+    destination = "0.0.0.0/0"
+    protocol = "6"
+    tcp_options {
+      min = 443
+      max = 443
+    }
+  }
+  
   ingress_security_rules {
     protocol = "6"
     source = "0.0.0.0/0"
